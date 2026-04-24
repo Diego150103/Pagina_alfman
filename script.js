@@ -5,30 +5,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    // Mobile Sheet Drawer Toggle
+    const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+    const sheetOverlay = document.getElementById('sheet-overlay');
+    const sheetContent = document.getElementById('sheet-content');
+    const sheetLinks = sheetContent ? sheetContent.querySelectorAll('a') : [];
     let isMenuOpen = false;
 
     function toggleMenu() {
         isMenuOpen = !isMenuOpen;
         if (isMenuOpen) {
-            mobileMenu.classList.add('active');
-            // Change icon to 'x'
-            mobileMenuBtn.innerHTML = '<i data-lucide="x"></i>';
+            mobileToggleBtn.classList.add('open');
+            sheetOverlay.classList.add('active');
+            sheetContent.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
         } else {
-            mobileMenu.classList.remove('active');
-            // Change icon back to 'menu'
-            mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
+            mobileToggleBtn.classList.remove('open');
+            sheetOverlay.classList.remove('active');
+            sheetContent.classList.remove('active');
+            document.body.style.overflow = '';
         }
-        lucide.createIcons();
     }
 
-    mobileMenuBtn.addEventListener('click', toggleMenu);
+    if (mobileToggleBtn) {
+        mobileToggleBtn.addEventListener('click', toggleMenu);
+    }
+    
+    if (sheetOverlay) {
+        sheetOverlay.addEventListener('click', toggleMenu); // Click outside to close
+    }
 
     // Close menu when a link is clicked
-    mobileMenuLinks.forEach(link => {
+    sheetLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (isMenuOpen) toggleMenu();
         });
@@ -45,27 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Pill Nav Cursor Logic
-    const pillNav = document.getElementById('pill-nav');
-    const pillCursor = document.getElementById('pill-cursor');
-    const pillTabs = document.querySelectorAll('.pill-tab');
 
-    if (pillNav && pillCursor) {
-        pillTabs.forEach(tab => {
-            tab.addEventListener('mouseenter', (e) => {
-                const rect = tab.getBoundingClientRect();
-                const navRect = pillNav.getBoundingClientRect();
-                
-                pillCursor.style.width = `${rect.width}px`;
-                pillCursor.style.left = `${rect.left - navRect.left}px`;
-                pillCursor.style.opacity = '1';
-            });
-        });
-
-        pillNav.addEventListener('mouseleave', () => {
-            pillCursor.style.opacity = '0';
-        });
-    }
 
     // Intersection Observer for Scroll Animations (Fade-in)
     const fadeElements = document.querySelectorAll('.fade-in');

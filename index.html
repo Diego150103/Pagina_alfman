@@ -15,37 +15,51 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="brand-assets/logo_marca.png" alt="Alfman Limpio Logo" style="height: 100px;">
-            </a>
-            <ul class="pill-nav" id="pill-nav">
-                <div class="pill-cursor" id="pill-cursor"></div>
-                <li class="pill-tab"><a href="#inicio">Inicio</a></li>
-                <li class="pill-tab"><a href="#servicios">Servicios</a></li>
-                <li class="pill-tab"><a href="#historia">Historia</a></li>
-                <li class="pill-tab"><a href="#productos">Productos</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="https://wa.me/525568088887" target="_blank" class="btn btn-primary">
-                    <i data-lucide="message-circle"></i> WhatsApp
+    <!-- SimpleHeader Navigation -->
+    <header class="simple-header" id="navbar">
+        <nav class="simple-nav-container">
+            <div class="header-left">
+                <a href="#" class="logo">
+                    <img src="brand-assets/logo_marca.png" alt="Alfman Limpio Logo" style="height: 60px;">
                 </a>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">
-                    <i data-lucide="menu"></i>
-                </button>
             </div>
+            
+            <div class="header-center">
+                <a href="#inicio" class="btn-ghost">Inicio</a>
+                <a href="#servicios" class="btn-ghost">Servicios</a>
+                <a href="#historia" class="btn-ghost">Historia</a>
+                <a href="#productos" class="btn-ghost">Productos</a>
+            </div>
+
+            <div class="header-right">
+                <a href="https://wa.me/525568088887" target="_blank" class="btn btn-outline btn-sm">Cotizar</a>
+                <a href="https://wa.me/525568088887" target="_blank" class="btn btn-primary btn-sm">WhatsApp</a>
+            </div>
+
+            <button class="mobile-toggle-btn" id="mobile-toggle-btn" aria-label="Toggle Menu">
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="menu-svg">
+                    <path class="menu-path-1" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22" />
+                    <path class="menu-path-2" d="M7 16 27 16" />
+                </svg>
+            </button>
+        </nav>
+
+    </header>
+
+    <!-- Mobile Sheet Drawer -->
+    <div class="sheet-overlay" id="sheet-overlay"></div>
+    <div class="sheet-content" id="sheet-content">
+        <div class="sheet-links">
+            <a href="#inicio" class="btn-ghost justify-start">Inicio</a>
+            <a href="#servicios" class="btn-ghost justify-start">Servicios</a>
+            <a href="#historia" class="btn-ghost justify-start">Historia</a>
+            <a href="#productos" class="btn-ghost justify-start">Productos</a>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#historia">Historia</a>
-            <a href="#productos">Productos</a>
-            <a href="https://wa.me/525568088887" target="_blank" class="btn btn-primary">WhatsApp</a>
+        <div class="sheet-footer">
+            <a href="https://wa.me/525568088887" target="_blank" class="btn btn-outline w-full text-center">Cotizar</a>
+            <a href="https://wa.me/525568088887" target="_blank" class="btn btn-primary w-full text-center">WhatsApp</a>
         </div>
-    </nav>
+    </div>
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
