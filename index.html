@@ -137,48 +137,82 @@
         </div>
     </section>
 
-    <!-- History Split Section -->
-    <section id="historia" class="history section-padding bg-light">
-        <div class="container">
-            <div class="split-layout">
-                <div class="split-content fade-in">
-                    <span class="badge">Nuestra Historia</span>
-                    <h2>De la Sección Amarilla a la Televisión</h2>
-                    
-                    <div class="history-item">
-                        <div class="history-icon"><i data-lucide="book"></i></div>
-                        <div>
-                            <h4>Alfman Limpio de amarillo</h4>
-                            <p>Comenzamos en la Sección Amarilla, conectando con hogares que buscaban un servicio de confianza para sus espacios de uso diario.</p>
-                        </div>
+    <!-- History Scroll 3D Section -->
+    <section id="historia" class="history-scroll-section">
+        <!-- Header: text content centered above the 3D card -->
+        <div class="history-scroll-header fade-in">
+            <span class="badge">Nuestra Historia</span>
+            <h2>De la Sección Amarilla<br>a la <span class="highlight">Televisión</span></h2>
+            <div class="history-milestones">
+                <div class="milestone-item">
+                    <div class="milestone-icon"><i data-lucide="book-open"></i></div>
+                    <div>
+                        <h4>Alfman Limpio de amarillo</h4>
+                        <p>Comenzamos en la Sección Amarilla, conectando con hogares que buscaban un servicio de confianza para sus espacios de uso diario.</p>
                     </div>
-                    
-                    <div class="history-item">
-                        <div class="history-icon"><i data-lucide="star"></i></div>
-                        <div>
-                            <h4>Las estrellas limpias</h4>
-                            <p>Crecimos y llegamos a la revista TVyNovelas, un avance logrado gracias a la confianza de nuestros clientes y compromiso.</p>
-                        </div>
+                </div>
+                <div class="milestone-item">
+                    <div class="milestone-icon"><i data-lucide="star"></i></div>
+                    <div>
+                        <h4>Las estrellas limpias</h4>
+                        <p>Crecimos y llegamos a la revista TVyNovelas, un avance logrado gracias a la confianza de nuestros clientes y compromiso.</p>
                     </div>
+                </div>
+                <div class="milestone-item">
+                    <div class="milestone-icon"><i data-lucide="tv-2"></i></div>
+                    <div>
+                        <h4>Presencia en TV y Radio</h4>
+                        <p>Canal 28, ForoTV, MVS y la radio, llevando nuestro mensaje de bienestar y cuidado del hogar a más personas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="history-item">
-                        <div class="history-icon"><i data-lucide="tv"></i></div>
-                        <div>
-                            <h4>Presencia en TV y Radio</h4>
-                            <p>Nuestro trabajo ha llegado a Canal 28, ForoTV, MVS y la radio, llevando nuestro mensaje de bienestar y cuidado del hogar a más personas.</p>
+        <!-- 3D Scroll Container -->
+        <div class="container-scroll-wrapper" id="historyScrollWrapper">
+            <div class="container-scroll-perspective">
+                <div class="container-scroll-card" id="historyScrollCard">
+                    <!-- Inner Carousel -->
+                    <div class="scroll-carousel" id="scrollCarousel">
+                        <div class="scroll-carousel-track" id="scrollCarouselTrack">
+                            <div class="scroll-slide">
+                                <img src="brand-assets/scroll_img_1.png" alt="Limpieza profesional de sillón">
+                                <div class="slide-label">Limpieza Profesional de Tapices</div>
+                            </div>
+                            <div class="scroll-slide">
+                                <img src="brand-assets/scroll_img_2.png" alt="Jabón AUA en primer plano">
+                                <div class="slide-label">Nuestro Producto Estrella</div>
+                            </div>
+                            <div class="scroll-slide">
+                                <img src="brand-assets/scroll_img_3.png" alt="Perrito con jabón AUA">
+                                <div class="slide-label">Pet-Friendly & Seguro</div>
+                            </div>
+                            <div class="scroll-slide">
+                                <img src="brand-assets/scroll_img_4.png" alt="Anuncio vintage Sección Amarilla 2009">
+                                <div class="slide-label">Sección Amarilla — Desde 2009</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="split-image fade-in">
-                    <div class="image-stack">
-                        <img src="brand-assets/colchones_service.png" alt="Colchón limpio" class="img-back">
-                        <img src="brand-assets/autos_service.png" alt="Auto limpio" class="img-front">
-                        <div class="experience-card">
-                            <h3>35+</h3>
-                            <p>Años de<br>Experiencia</p>
-                        </div>
+                    <!-- Carousel Arrows -->
+                    <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Anterior">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Siguiente">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                    <!-- Carousel Dots -->
+                    <div class="carousel-dots" id="carouselDots">
+                        <button class="carousel-dot active" data-index="0"></button>
+                        <button class="carousel-dot" data-index="1"></button>
+                        <button class="carousel-dot" data-index="2"></button>
+                        <button class="carousel-dot" data-index="3"></button>
                     </div>
                 </div>
+            </div>
+            <!-- Floating 35+ Badge -->
+            <div class="experience-badge-float">
+                <span class="exp-number">35+</span>
+                <span class="exp-label">AÑOS DE<br>EXPERIENCIA</span>
             </div>
         </div>
     </section>

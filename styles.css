@@ -621,124 +621,272 @@ img {
 }
 
 /* ==========================================================================
-   History Split Section
+   History 3D Container Scroll Section
    ========================================================================== */
-.split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+.history-scroll-section {
+    background-color: var(--bg-light);
+    padding: 6rem 0 0;
+    overflow: hidden;
 }
 
-.split-content h2 {
-    font-size: 2.5rem;
+/* Header text above the 3D card */
+.history-scroll-header {
+    max-width: 860px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.history-scroll-header h2 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
     font-weight: 800;
-    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 2.5rem;
+    line-height: 1.15;
 }
 
-.history-item {
+.history-milestones {
     display: flex;
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: left;
 }
 
-.history-icon {
+.milestone-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    max-width: 260px;
+    flex: 1 1 220px;
+}
+
+.milestone-icon {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     background-color: var(--white);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(26, 110, 181, 0.15);
 }
 
-.history-item h4 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+.milestone-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: var(--text-dark);
 }
 
-.history-item p {
+.milestone-item p {
+    font-size: 0.875rem;
     color: var(--text-light);
-    margin-bottom: 0;
+    margin: 0;
+    line-height: 1.6;
 }
 
-.image-stack {
+/* 3D Perspective Wrapper */
+.container-scroll-wrapper {
     position: relative;
-    height: 600px;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem 5rem;
+}
+
+.container-scroll-perspective {
+    perspective: 1000px;
     width: 100%;
+    max-width: 860px;
 }
 
-.image-stack img {
-    border-radius: var(--radius-lg);
-    position: absolute;
-    box-shadow: var(--shadow-xl);
+.container-scroll-card {
+    position: relative;
+    width: 100%;
+    border-radius: 28px;
+    border: 4px solid #2c2c2e;
+    background: #1a1a1c;
+    box-shadow:
+        0 0 0 1px rgba(0,0,0,0.3),
+        0 9px 20px rgba(0,0,0,0.4),
+        0 37px 37px rgba(0,0,0,0.35),
+        0 84px 50px rgba(0,0,0,0.18),
+        0 149px 60px rgba(0,0,0,0.06);
+    transform-origin: top center;
+    transform: rotateX(18deg) scale(0.93);
+    transition: transform 0.1s linear;
+    overflow: visible;
+}
+
+/* Inner carousel */
+.scroll-carousel {
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #111;
+}
+
+.scroll-carousel-track {
+    display: flex;
+    width: 400%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-slide {
+    width: 25%;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.scroll-slide img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
 }
 
-.img-back {
-    top: 0;
-    right: 0;
-    width: 80%;
-    height: 70%;
-    z-index: 1;
-}
-
-.img-front {
+.slide-label {
+    position: absolute;
     bottom: 0;
     left: 0;
-    width: 70%;
-    height: 60%;
-    z-index: 2;
-    border: 8px solid var(--bg-light); /* To blend with background */
+    right: 0;
+    padding: 2rem 1.5rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 }
 
-.experience-card {
+/* Carousel arrows */
+.carousel-arrow {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--secondary);
-    color: var(--white);
-    padding: 2rem;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    width: 160px;
-    height: 160px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow-prev { left: 1rem; }
+.carousel-arrow-next { right: 1rem; }
+
+/* Dots */
+.carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, transform 0.25s;
+}
+
+.carousel-dot.active {
+    background: white;
+    transform: scale(1.3);
+}
+
+/* Floating 35+ Badge */
+.experience-badge-float {
+    position: absolute;
+    bottom: 4rem;
+    right: max(2rem, calc(50% - 520px));
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f5a623 0%, #e08800 100%);
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    z-index: 3;
-    box-shadow: var(--shadow-lg);
-    border: 6px solid var(--bg-light);
+    box-shadow: 0 8px 32px rgba(240, 150, 20, 0.5);
+    z-index: 20;
+    animation: floatBadge 3s ease-in-out infinite;
 }
 
-.experience-card h3 {
-    font-size: 2.5rem;
-    color: var(--white);
-    margin: 0;
+.exp-number {
+    font-size: 2.25rem;
+    font-weight: 900;
     line-height: 1;
+    letter-spacing: -0.04em;
 }
 
-.experience-card p {
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin: 0;
+.exp-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    line-height: 1.4;
+    margin-top: 0.25rem;
 }
 
-@media (max-width: 992px) {
-    .split-layout {
-        grid-template-columns: 1fr;
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 768px) {
+    .history-milestones {
+        flex-direction: column;
+        align-items: center;
     }
-    .image-stack {
-        height: 500px;
-        margin-top: 3rem;
+    .milestone-item {
+        max-width: 100%;
+    }
+    .scroll-carousel {
+        aspect-ratio: 1 / 1;
+    }
+    .experience-badge-float {
+        width: 100px;
+        height: 100px;
+        right: 1rem;
+        bottom: 3.5rem;
+    }
+    .exp-number { font-size: 1.75rem; }
+    .container-scroll-card {
+        transform: rotateX(10deg) scale(0.95);
     }
 }
+
+
 
 /* ==========================================================================
    Videos Section
