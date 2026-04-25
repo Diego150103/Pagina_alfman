@@ -5,37 +5,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // Mobile Sheet Drawer Toggle
-    const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
-    const sheetOverlay = document.getElementById('sheet-overlay');
-    const sheetContent = document.getElementById('sheet-content');
-    const sheetLinks = sheetContent ? sheetContent.querySelectorAll('a') : [];
-    let isMenuOpen = false;
-
-    function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            mobileToggleBtn.classList.add('open');
-            sheetOverlay.classList.add('active');
-            sheetContent.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        } else {
-            mobileToggleBtn.classList.remove('open');
-            sheetOverlay.classList.remove('active');
-            sheetContent.classList.remove('active');
-            document.body.style.overflow = '';
+    // Fluid Menu Toggle (Mobile)
+    const fluidMenu = document.getElementById('fluid-menu');
+    const fluidMenuBtn = document.getElementById('fluid-menu-btn');
+    const fluidOverlay = document.getElementById('fluid-overlay');
+    
+    if (fluidMenu && fluidMenuBtn && fluidOverlay) {
+        function toggleFluidMenu() {
+            const isExpanded = fluidMenu.classList.toggle('expanded');
+            fluidOverlay.classList.toggle('active');
+            document.body.style.overflow = isExpanded ? 'hidden' : '';
         }
-    }
 
-    if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', toggleMenu);
-    if (sheetOverlay) sheetOverlay.addEventListener('click', toggleMenu);
+        fluidMenuBtn.addEventListener('click', toggleFluidMenu);
+        fluidOverlay.addEventListener('click', toggleFluidMenu);
 
-    sheetLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (isMenuOpen) toggleMenu();
+        // Close menu when clicking a fluid item
+        const fluidItems = fluidMenu.querySelectorAll('.fluid-item');
+        fluidItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (fluidMenu.classList.contains('expanded')) {
+                    toggleFluidMenu();
+                }
+            });
         });
-    });
-
+    }
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -45,6 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled');
         }
     });
+    // Sliding Nav Cursor
+    const pillNav = document.getElementById('pill-nav');
+    const navCursor = document.getElementById('nav-cursor');
+    if (pillNav && navCursor) {
+        const navItems = pillNav.querySelectorAll('.nav-item');
+        
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const itemRect = item.getBoundingClientRect();
+                const navRect = pillNav.getBoundingClientRect();
+                
+                navCursor.style.width = `${itemRect.width}px`;
+                navCursor.style.left = `${itemRect.left - navRect.left}px`;
+                navCursor.style.opacity = '1';
+            });
+        });
+
+        pillNav.addEventListener('mouseleave', () => {
+            navCursor.style.opacity = '0';
+        });
+    }
+
 
     // =====================================================================
     // 3D Container Scroll Animation (Vanilla JS — replicates Framer Motion)
