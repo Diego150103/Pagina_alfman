@@ -331,6 +331,9 @@ img {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-dark);
+    background: transparent;
+    border: none;
+    font-family: inherit;
     transition: background-color 0.2s ease, color 0.2s ease;
     cursor: pointer;
 }
